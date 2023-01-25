@@ -74,8 +74,8 @@ function mainMenu(person, people) {
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
             // HINT: Look for a people-collection stringifier utility function to help
-            let personFamily = findPersonFamily(person[0], people);
-            alert(personFamily);
+            findPersonFamily(person, people);
+            
             break;
         case "descendants":
             //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////
@@ -191,3 +191,10 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
+
+function findPersonFamily(person, people) {
+    let personFamily = `Parents: ${people.}\n`;
+    personFamily += `Current Spouse: ${person.currentSpouse}\n`;
+    personFamily += `Siblings: ${people}\n`;
+    alert(personFamily);
+}
