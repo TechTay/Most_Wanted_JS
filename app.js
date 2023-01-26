@@ -74,7 +74,7 @@ function mainMenu(person, people) {
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
             // HINT: Look for a people-collection stringifier utility function to help
-            findPersonFamily(person, people);
+            findPersonFamily(person[0], people);
             
             break;
         case "descendants":
@@ -193,8 +193,15 @@ function chars(input) {
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
 
 function findPersonFamily(person, people) {
-    let personFamily = `Parents: ${people.}\n`;
-    personFamily += `Current Spouse: ${person.currentSpouse}\n`;
-    personFamily += `Siblings: ${people}\n`;
-    alert(personFamily);
+   
+
+   let foundSpouse = people.filter(function(el) {
+    if (el.id == person.currentSpouse)
+   {
+        return true
+   }
+})
+    alert('currentSpouse:' + ' ' + foundSpouse[0].firstName + ' ' + foundSpouse[0].lastName)
+    
 }
+
