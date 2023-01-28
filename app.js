@@ -193,15 +193,41 @@ function chars(input) {
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
 
 function findPersonFamily(person, people) {
+    let personFamily = `First Name: ${person.firstName}\n`;
+   personFamily += `Last Name: ${person.lastName}\n`;
+   personFamily += `Parents : ${person.parents}\n`;
+   personFamily += `Spouse : ${person.currentSpouse}\n`;
    
-
-   let foundSpouse = people.filter(function(el) {
-    if (el.id == person.currentSpouse)
-   {
-        return true
-   }
-})
-    alert('currentSpouse:' + ' ' + foundSpouse[0].firstName + ' ' + foundSpouse[0].lastName)
-    
+    alert(personFamily);
 }
 
+    let parent1 = 693243224
+    let parent2 = 888201200
+
+    
+
+    let results = foundParents(parent1, parent2)
+
+    function foundParents(parent1, parent2) {
+        return parent1 + parent2
+    }
+//    let foundSpouse = people.filter(function(el) {
+//     if (el.id == person.currentSpouse)
+//    {
+//         return true
+//    }
+// })
+
+//     let foundParents = people.filter(function(el) {
+//      if (person.firstName === 'firstName' && person.lastName === 'lastName') 
+//      { 
+//         return true;
+//      }
+//     })
+
+//     alert('currentSpouse:' + ' ' + foundSpouse[0].firstName + ' ' + foundSpouse[0].lastName)
+//     alert ('parents:' + ' ' + foundParents)
+    
+    
+
+// }
