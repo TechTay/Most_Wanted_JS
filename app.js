@@ -203,9 +203,7 @@ function findPersonFamily(person, people) {
         foundPerson += `parents: ${parents[i].firstName} ${parents[i].lastName}\n`
     }
    }
-   if (siblings != null) {
-    for(let i = 0; i < parents.length; i ++) {
-        siblings += `siblings: ${parents[i].firstName} ${parents[i].lastName}\n`
+   
 
         if (spouse != null) {
             for(let i = 0; i < spouse.length; i ++) {
@@ -217,8 +215,8 @@ function findPersonFamily(person, people) {
     
 
 }
-   }
-}
+
+
 
 function findSpouse(person, people) {
     let foundSpouse = people.filter(function(el){
@@ -226,7 +224,7 @@ function findSpouse(person, people) {
             return true;
         }
     })
-    alert (`The Spouse is: ${foundSpouse.firstName} ${foundSpouse.lastName}`)
+    alert (`The Spouse is: ${foundSpouse[0].firstName} ${foundSpouse[0].lastName}`)
 }
 
 function findParents(person, people) {
@@ -242,13 +240,15 @@ function findParents(person, people) {
 
 function findSiblings(person, people) {
     let foundSiblings = people.filter(function(el){
-        if(el.id === person.parents[0] && el.id === person.parents[1]){
+        if(
+            el.parents.includes( person.parents[0]) || el.id === person.parents[1]){
             return true;
-        } 
+          } 
         else {
             return false;
         }
     });
-        return foundSiblings
+        
+    return foundSiblings
 }
-
+    
