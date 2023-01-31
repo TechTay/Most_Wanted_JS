@@ -194,19 +194,61 @@ function chars(input) {
 
 function findPersonFamily(person, people) {
     let foundPerson = " ";
-    let siblings = displaySiblings(person, people);
-    let spouse = displaySpouse(person, people);
-    let parents = displayParents(person, people);
+    let spouse = findSpouse(person, people);
+    let parents = findParents(person, people);
+    let siblings = findSiblings(person, people);
   
    if (parents != null) {
     for(let i = 0; i < parents.length; i ++) {
-        foundPerson += parents: ${parents[i].firstName} ${parents[i].lastName}\n
+        foundPerson += `parents: ${parents[i].firstName} ${parents[i].lastName}\n`
     }
    }
+   if (siblings != null) {
+    for(let i = 0; i < parents.length; i ++) {
+        siblings += `siblings: ${parents[i].firstName} ${parents[i].lastName}\n`
 
+        if (spouse != null) {
+            for(let i = 0; i < spouse.length; i ++) {
+                spouse += `spouse: ${spouse[i].firstName} ${spouse[i].lastName}\n`
+            }}
 
     alert(foundPerson);
     
     
 
 }
+   }
+}
+
+function findSpouse(person, people) {
+    let foundSpouse = people.filter(function(el){
+        if (el.id === person.currentSpouse) {
+            return true;
+        }
+    })
+    alert (`The Spouse is: ${foundSpouse.firstName} ${foundSpouse.lastName}`)
+}
+
+function findParents(person, people) {
+    let foundPerson = people.filter(function(el) {
+        if(el.id === person.parents[0] || el.id === person.parents[1]) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+    return foundPerson
+}
+
+function findSiblings(person, people) {
+    let foundSiblings = people.filter(function(el){
+        if(el.id === person.parents[0] && el.id === person.parents[1]){
+            return true;
+        } 
+        else {
+            return false;
+        }
+    });
+        return foundSiblings
+}
+
