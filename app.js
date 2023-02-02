@@ -196,7 +196,7 @@ function findPersonFamily(person, people) {
     let foundPerson = " ";
     let spouse = findSpouse(person, people);
     let parents = findParents(person, people);
-    let siblings = findSiblings(person, people);
+    
   
    if (parents != null) {
     for(let i = 0; i < parents.length; i ++) {
@@ -212,7 +212,7 @@ function findPersonFamily(person, people) {
 
     alert(foundPerson);
     
-    
+  
 
 }
 
@@ -247,8 +247,24 @@ function findSiblings(person, people) {
         else {
             return false;
         }
-    });
+    }); displayPeople(foundSiblings)
         
     return foundSiblings
 }
-    
+
+function findPersonDescendants(person, people = []) {
+       let foundChildren = people.filter;
+       foundChildren = people;
+
+       if (foundChildren.length === 0) {
+            return foundChildren;
+       }
+        for (let i = 0; i < person.length; i++) {
+            foundChildren = foundChildren.concat(findPersonDescendants(foundChildren[i]))
+
+
+
+        };
+        return foundChildren;
+    }
+
