@@ -81,7 +81,7 @@ function mainMenu(person, people) {
             //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////
             // HINT: Review recursion lecture + demo for bonus user story
             let personDescendants = findPersonDescendants(person[0], people);
-            alert(personDescendants);
+            displayPeople(personDescendants);
             break;
         case "restart":
             // Restart app() from the very beginning
@@ -249,22 +249,25 @@ function findSiblings(person, people) {
         }
     }); displayPeople(foundSiblings)
         
-    return foundSiblings
+   
 }
 
-function findPersonDescendants(person, people = []) {
-       let foundChildren = people.filter;
-       foundChildren = people;
-
-       if (foundChildren.length === 0) {
-            return foundChildren;
+function findPersonDescendants(person,people) {
+       let foundChildren = people.filter(people => people.parents.includes(person.id))
+       
+       let descendantsArray = foundChildren;
+       if(!foundChildren[0]){
+          return descendantsArray
        }
-        for (let i = 0; i < person.length; i++) {
-            foundChildren = foundChildren.concat(findPersonDescendants(foundChildren[i]))
+       for(let i=0; i<foundChildren.length; i++) {
+        descendantsArray = descendantsArray.concat(
+            findPersonDescendants(foundChildren[i],people)
+        )
+       }
+       let results = descendantsArray.map(children => `Descendants: ${children.firstName} ${children.lastName}`)
+       alert(results)
 
-
-
-        };
-        return foundChildren;
+       return descendantsArray
     }
 
+   
