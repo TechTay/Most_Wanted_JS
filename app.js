@@ -59,7 +59,7 @@ function mainMenu(person, people) {
         return app(people);
     }
     let displayOption = prompt(
-        `Found ${person[0].firstName} ${person[0].lastName}. Do you want to know their 'info', 'family', or 'descendants'?\nType the option you want or type 'restart' or 'quit'.`
+        `Found ${person[0].firstName} ${person[0].lastName}. Do you want to know their 'info', 'family','descendants', or 'traits?\nType the option you want or type 'restart' or 'quit'.`
     );
     // Routes our application based on the user's input
     switch (displayOption) {
@@ -83,6 +83,8 @@ function mainMenu(person, people) {
             let personDescendants = findPersonDescendants(person[0], people);
             displayPeople(personDescendants);
             break;
+        case "traits":
+            findTraits
         case "restart":
             // Restart app() from the very beginning
             app(people);
@@ -241,14 +243,20 @@ function findParents(person, people) {
 function findSiblings(person, people) {
     let foundSiblings = people.filter(function(el){
         if(
-            el.parents.includes( person.parents[0]) || el.id === person.parents[1]){
+            el.parents.includes( person.parents[0]) && el.id !== person.id){
             return true;
           } 
         else {
             return false;
         }
-    }); displayPeople(foundSiblings)
-        
+    });  
+    let siblings =""
+    if (foundSiblings != null) {
+        for(let i = 0; i < foundsiblings.length; i ++) {
+            siblings += `spouse: ${foundSiblings[i].firstName} ${foundSiblings[i].lastName}\n`
+        }}
+
+        alert(siblings)
    
 }
 
@@ -264,10 +272,61 @@ function findPersonDescendants(person,people) {
             findPersonDescendants(foundChildren[i],people)
         )
        }
-       let results = descendantsArray.map(children => `Descendants: ${children.firstName} ${children.lastName}`)
-       alert(results)
 
        return descendantsArray
     }
 
    
+function searchByTraits(people)
+    let userInputProp = promptFor (
+        "Enter the trait you want to search by ", 
+        props
+    );
+    let userInputVal = propSwitchCase(userInputProp);
+    let results = people.filter(function (el){
+        return el[userInputProp] === userInputVal
+    })
+    if (results.length === 0){
+        alert("No results found")
+        return searchByTraits(people)
+    }
+    displayPeople(results);
+    userContinueSearch = promptFor("Would you liek to continue narrowing your search? ", yesNo)
+    if (userContinueSearch === "yes") {
+        return searchByTraits(results)
+    } else {
+        return results;
+    }
+function propSwitchCase(property) {
+    let userInputVal = [];
+    switch (property) {
+        case "eyeColor":
+            userInputVal = promptFor("What eye color would you like to search for? ", eyecolorValue)
+            break;
+        case "gender":
+            userInputVal = promptFor("What gender would you like to search for? ", genderValue)
+            break;
+        case "occupation":
+            userInputVal = promptFor("What occupation would you like to search for? ", occupationValue)
+            break;
+    
+        
+    }
+    return userInputVal
+}
+
+function props(input) {
+    return input === "eye color" || input === "occupation" || input === "weight" || "gender" || "height";
+}
+
+function genderValue(input) {
+    return input === "male" || input === "female";
+}
+
+function occupationValue(input) {
+    return input === "programmer" || input === "assistant" || input === "landscaper" || input === "nurse" || input === "student"
+    || input === "architect" || input === "doctor" || input === "politician";
+}
+function eyecolorValue(input) {
+    return input === "brown" || input === "green" || input === "black" || input === "blue" || input === "hazel";
+}
