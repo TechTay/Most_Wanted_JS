@@ -277,8 +277,8 @@ function findPersonDescendants(person,people) {
     }
 
    
-function searchByTraits(people)
-    let userInputProp = promptFor (
+function searchByTraits(people){
+    let userInputProp = promptFor(
         "Enter the trait you want to search by ", 
         props
     );
@@ -291,12 +291,13 @@ function searchByTraits(people)
         return searchByTraits(people)
     }
     displayPeople(results);
-    let userContinueSearch = promptFor("Would you liek to continue narrowing your search? ", yesNo)
+    let userContinueSearch = promptFor("Would you like to continue narrowing your search? ", yesNo)
     if (userContinueSearch === "yes") {
         return searchByTraits(results)
     } else {
         return results;
     }
+}
 function propSwitchCase(property) {
     let userInputVal = [];
     switch (property) {
