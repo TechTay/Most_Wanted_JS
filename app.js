@@ -291,7 +291,7 @@ function searchByTraits(people)
         return searchByTraits(people)
     }
     displayPeople(results);
-    userContinueSearch = promptFor("Would you liek to continue narrowing your search? ", yesNo)
+    let userContinueSearch = promptFor("Would you liek to continue narrowing your search? ", yesNo)
     if (userContinueSearch === "yes") {
         return searchByTraits(results)
     } else {
